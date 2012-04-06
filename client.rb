@@ -13,7 +13,7 @@ class Client
 end
 
 get '/clients' do
- 
+  erb :view_clients
 end
 
 get '/client/new' do
