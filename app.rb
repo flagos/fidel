@@ -17,13 +17,7 @@ require './client.rb'
 require './order.rb'
 require './pricing.rb'
 
-get '/clients' do
-  "Hello World!"
-end
 
-get '/client/new' do
-  "Hello World!"
-end
 
 get '/orders' do
   "Hello World!"
@@ -46,5 +40,4 @@ DataMapper::Logger.new($stdout, :debug)
 DataMapper.setup( :default, "sqlite3://#{Dir.pwd}/db/fidel.db" )
 
 DataMapper.finalize
-DataMapper.auto_migrate!
-#DataMapper.auto_upgrade!
+DataMapper.auto_upgrade!
