@@ -7,3 +7,13 @@ class Order
   property :sum,      Integer, :required => true
 
 end
+
+
+get '/orders/:client' do
+  erb :view_order
+
+end
+
+get '/orders/:client/add' do
+  erb :add_order
+end
