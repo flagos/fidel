@@ -1,0 +1,3 @@
+<% Order.all(:client => params[:client]).each do |o| %>
+<%= o.sum %> <br/>
+<% end %>

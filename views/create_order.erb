@@ -1,0 +1,13 @@
+<p>Enregistrer un nouvel achat pour le client:</p>
+
+ID: <%= @c.id %> Name: <%= @c.name %> Surname: <%= @c.surname %> Birth: <%= @c.birth %> email: <%= @c.email %>
+ <br/>
+
+
+<form action="/orders/<%= @c.id %>/new" method="post">
+  <label for="sum">Somme :</label>
+  <input type="text" name="sum">
+
+  <label for="to">Enregistrer :</label>
+  <input type="submit" value="Envoyer">
+</form>

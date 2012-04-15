@@ -16,20 +16,21 @@ get '/clients' do
   erb :view_clients
 end
 
+
+get '/client/:client_id' do
+  @c = Client.get(params[:client_id])
+  erb :view_client
+end
+
+
 get '/client/new' do
   erb :create_client
 end
 
-get '/client/:client_id' do
-  @c = Client.get(params[:client_id])
-  puts @c
-  erb :view_client
-end
-
 post '/client/new' do
-  @client = Client.create(:name   => params[:name],
-                         :surname => params[:surname],
-                         :email   => params[:email],
-                         :birth   => params[:birth])
+  @client = Client.create(:name    => params[:name],
+                          :surname => params[:surname],
+                          :email   => params[:email],
+                          :birth   => params[:birth])
   erb :register_client  
 end

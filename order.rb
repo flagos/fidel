@@ -3,8 +3,9 @@ class Order
   
   belongs_to :client
 
-  property :id,        Serial
+  property :id,       Serial
   property :sum,      Integer, :required => true
+  property :date,     DateTime
 
 end
 
@@ -14,6 +15,17 @@ get '/orders/:client' do
 
 end
 
-get '/orders/:client/add' do
-  erb :add_order
+
+get '/orders/:client_id/new' do
+  @c = Client.get(params[:client_id])
+  erb :create_order
+end
+
+post '/orders/:client_id/new' do
+  @c = Client.get(params[:client_id])
+  puts params.inspect
+  @order = Order.create(:sum    => params[:sum],
+                        :date   => Time.now,
+                        :client => @c)
+  erb :register_order
 end

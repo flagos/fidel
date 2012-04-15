@@ -1,2 +1,7 @@
 ID: <%= @c.id %> Name: <%= @c.name %> Surname: <%= @c.surname %> Birth: <%= @c.birth %> email: <%= @c.email %>
  <br/>
+
+Orders:  <br/>
+<% @c.orders.each do |o| %>
+Montant: <%= o.sum %> Date: <%= o.date %><br/>
+<% end %>
