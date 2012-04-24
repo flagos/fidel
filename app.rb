@@ -12,6 +12,9 @@ require 'dm-migrations'
 # sinatra
 require 'sinatra'
 
+#gloabal gem
+require 'json'
+
 # local load
 require './client.rb'
 require './order.rb'
