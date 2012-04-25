@@ -1,7 +1,24 @@
-ID: <%= @c.id %> Name: <%= @c.name %> Surname: <%= @c.surname %> Birth: <%= @c.birth %> email: <%= @c.email %>
+
+<div class="title">
+<div class="title_attr">ID: <%= @c.id %></div>
+<div class="title_attr">Name: <%= @c.name %></div>
+<div class="title_attr">Surname: <%= @c.surname %></div>
+<div class="title_attr"> Birth: <%= @c.birth %></div>
+<div class="title_attr"> email: <%= @c.email %></div>
+</div>
  <br/>
 
-Orders:  <br/>
+<div id="order_table">
+<div class="table">Montant</div>
+<di class="table"v>Date</div>
+<div class="table">Réduction</div>
+
 <% @c.orders.each do |o| %>
-Montant: <%= o.sum %> Date: <%= o.date %><br/>
+<a href="toto"> 
+   <div class="table"><%= o.sum %> </div>
+   <div class="table"><%= o.date.strftime('%d/%m/%Y %kh%M') %></div>
+   <div class="table"><%= o.is_discount %> </div>
+</a>
+
 <% end %>
+</div>

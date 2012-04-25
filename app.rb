@@ -15,8 +15,6 @@ require 'sinatra'
 # local load
 require './client.rb'
 require './order.rb'
-require './pricing.rb'
-
 
 
 get '/orders' do
@@ -27,13 +25,6 @@ get '/order/new' do
   "Hello World!"
 end
 
-get '/pricings' do
-  "Hello World!"
-end
-
-get '/princing/new' do
-  "Hello World!"
-end
 
 # Setup for Datamapper
 DataMapper::Logger.new($stdout, :debug)

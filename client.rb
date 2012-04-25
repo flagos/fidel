@@ -16,13 +16,6 @@ get '/clients' do
   erb :view_clients
 end
 
-
-get '/client/:client_id' do
-  @c = Client.get(params[:client_id])
-  erb :view_client
-end
-
-
 get '/client/new' do
   erb :create_client
 end
@@ -33,4 +26,10 @@ post '/client/new' do
                           :email   => params[:email],
                           :birth   => params[:birth])
   erb :register_client  
+end
+
+
+get '/client/:client_id' do
+  @c = Client.get(params[:client_id])
+  erb :view_client
 end
