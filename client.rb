@@ -13,17 +13,42 @@ class Client
 end
 
 get '/clients' do
-  erb :view_clients
+  erb :view_clients  
 end
 
 get '/clients.json' do
-  json=Array.new
+  
+
+  json=Hash.new
+  json["metadata"] = [{ :name     => "ID",
+                        :label    => "ID",
+                        :datatype => "integer",
+                        :editable => false},
+                      { :name     => "name",
+                        :label    => "Name",
+                        :datatype => "string",
+                        :editable => true },
+                      { :name     => "surname",
+                        :label    => "Surname",
+                        :datatype => "string",
+                        :editable => true },
+                      { :name     => "birth",
+                        :label    => "Birth",
+                        :datatype => "date",
+                        :editable => true },
+                      { :name     => "email",
+                        :label    => "Email",
+                        :datatype => "email",
+                        :editable => true },
+                      
+    ]
+  json["data"] = Array.new
   Client.all.each do |c|
-   json.push( { :id      => c.id,
-                :name    => c.name,
-                :surname => c.surname,
-                :birth   => c.birth,
-                :email   => c.email } )
+   json["data"].push( { :id      => c.id,
+                        :name    => c.name,
+                        :surname => c.surname,
+                        :birth   => c.birth,
+                        :email   => c.email } )
   end
   json.to_json
 end
