@@ -16,6 +16,18 @@ get '/clients' do
   erb :view_clients
 end
 
+get '/clients.json' do
+  json=Array.new
+  Client.all.each do |c|
+   json.push( { :id      => c.id,
+                :name    => c.name,
+                :surname => c.surname,
+                :birth   => c.birth,
+                :email   => c.email } )
+  end
+  json.to_json
+end
+
 get '/client/new' do
   erb :create_client
 end
