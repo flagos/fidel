@@ -16,15 +16,11 @@ get '/clients' do
   erb :view_clients  
 end
 
+
 get '/clients.json' do
-  
 
   json=Hash.new
-  json["metadata"] = [{ :name     => "ID",
-                        :label    => "ID",
-                        :datatype => "integer",
-                        :editable => false},
-                      { :name     => "name",
+  json["metadata"] = [{ :name     => "name",
                         :label    => "Name",
                         :datatype => "string",
                         :editable => true },
@@ -40,15 +36,24 @@ get '/clients.json' do
                         :label    => "Email",
                         :datatype => "email",
                         :editable => true },
-                      
+                      { :name     => "page",
+                        :label    => "Page",
+                        :datatype => "html",
+                        :editable => false },
+                                            
     ]
   json["data"] = Array.new
   Client.all.each do |c|
-   json["data"].push( { :id      => c.id,
-                        :name    => c.name,
-                        :surname => c.surname,
-                        :birth   => c.birth,
-                        :email   => c.email } )
+    json["data"].push( { :id      => c.id,
+                         :values  => {
+                           :name    => c.name,
+                           :surname => c.surname,
+                           :birth   => c.birth.nil? ? "" : c.birth.strftime('%d/%m/%y'),
+                           :email   => c.email,
+                           :page    => "<a href=\"/client/#{c.id}\"> Consulter </a>" ,
+                         }
+                       }
+                     )
   end
   json.to_json
 end
