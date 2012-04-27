@@ -1,0 +1,9 @@
+<% if @client.saved? %>
+Successfully create client name: <%= @client.name %> surname: <%= @client.surname%>
+<% else %>
+Problem occurs with client name: <%= @client.name %> surname: <%= @client.surname%>
+ <% @client.errors.each do |e| %>
+  <br/>
+  <%= e %>
+ <% end %>
+<% end %>
