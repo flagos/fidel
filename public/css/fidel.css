@@ -40,7 +40,8 @@ input.invalid {
     color: #FDFDFD;
 }
 #message {
-    width: 100%;
+    width: 490px;
+    padding-left: 300px;
 }
 table.testgrid { 
     border-collapse: collapse; 
@@ -126,7 +127,12 @@ table.testgrid td {
     float: right;
 }
 
-.title {
+.client_overview {
     width: 300px;
     float: left;
+}
+
+.orders_overview {
+    font-size: 14px;
+    padding-top: 10px;
 }

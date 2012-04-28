@@ -1,5 +1,5 @@
 
-<div class="title">
+<div class="client_overview">
 <div class="title_attr">ID: <%= @c.id %></div>
 <div class="title_attr">Name: <%= @c.name %></div>
 <div class="title_attr">Surname: <%= @c.surname %></div>
@@ -11,7 +11,7 @@
 <%   count += 1 %>
 <%  end %>
 <% end %>
-<div class="orders_resume">  <%= count %> discount<%= count>=2 ? "s":"" %> for <%= @c.orders.size %> order<%= @c.orders.size>=2 ? "s":"" %></div> 
+<div class="orders_overview">  <%= count %> discount<%= count>=2 ? "s":"" %> for <%= @c.orders.size %> order<%= @c.orders.size>=2 ? "s":"" %></div> 
 </div>
  <br/>
 
