@@ -127,17 +127,15 @@ table.testgrid td {
     float: right;
 }
 
-.client_overview {
+
+.top-left_overview {
+    font-size: 14px;
+    padding-top: 10px;
     width: 300px;
     float: left;
 }
 
-#orders_overview {
-    font-size: 14px;
-    padding-top: 10px;
-}
-
-#create_order {
+.create_button {
     font-size: 14px;
     padding: 10px; 
     background: #E36217;
@@ -146,7 +144,7 @@ table.testgrid td {
     border-radius: 5px;
 }
 
-#create_order a {
+.create_button a {
     color: white;
 }
 

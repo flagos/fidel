@@ -11,6 +11,14 @@
 </style>
 
 <script src="/js/client_table.js"></script>
+    <div id="users_overview" class="top-left_overview">
+      <div id="users_info">
+      Total Clients: <%= Client.all.size %>
+      </div>
+      <div id="create_client" class="create_button"> <a href="/client/new" > Create new client </a>       
+      </div>
+
+    </div>
     <div class="main_view">
 	<!-- Feedback message zone -->
 	<div id="message"></div>
