@@ -16,32 +16,33 @@ get '/clients' do
   erb :view_clients  
 end
 
+Client_metadata = [{ :name     => "name",
+                     :label    => "Name",
+                     :datatype => "string",
+                     :editable => true },
+                   { :name     => "surname",
+                     :label    => "Surname",
+                     :datatype => "string",
+                     :editable => true },
+                   { :name     => "birth",
+                     :label    => "Birth",
+                     :datatype => "date",
+                     :editable => true },
+                   { :name     => "email",
+                     :label    => "Email",
+                     :datatype => "email",
+                     :editable => true },
+                   { :name     => "page",
+                     :label    => "Page",
+                     :datatype => "html",
+                     :editable => false },
+                   
+                  ]
 
 get '/clients.json' do
 
   json=Hash.new
-  json["metadata"] = [{ :name     => "name",
-                        :label    => "Name",
-                        :datatype => "string",
-                        :editable => true },
-                      { :name     => "surname",
-                        :label    => "Surname",
-                        :datatype => "string",
-                        :editable => true },
-                      { :name     => "birth",
-                        :label    => "Birth",
-                        :datatype => "date",
-                        :editable => true },
-                      { :name     => "email",
-                        :label    => "Email",
-                        :datatype => "email",
-                        :editable => true },
-                      { :name     => "page",
-                        :label    => "Page",
-                        :datatype => "html",
-                        :editable => false },
-                                            
-    ]
+  json["metadata"] = Client_metadata
   json["data"] = Array.new
   Client.all.each do |c|
     json["data"].push( { :id      => c.id,
@@ -60,6 +61,13 @@ end
 
 get '/client/new' do
   erb :create_client
+end
+
+post '/client/update' do
+  client = Client.get(params[:id])
+  client[Client_metadata[params[:column].to_i][:name]] = params[:value]
+  client.save
+
 end
 
 post '/client/new' do

@@ -10,11 +10,7 @@
 	input {padding-top: 2px;padding-bottom: 2px; heigth: 20px}
 </style>
 
-<script>
-	window.onload = function() {
-		editableGrid = new EditableGrid("DemoGridJSON"); 
-		editableGrid.tableLoaded = function() { this.renderGrid("tablecontent", "testgrid"); };
-		editableGrid.loadJSON("/clients.json");
-		} 
-</script>
+<script src="/js/client_table.js"></script>
+	<!-- Feedback message zone -->
+	<div id="message"></div>
 	<div id="tablecontent"></div>

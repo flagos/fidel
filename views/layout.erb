@@ -1,6 +1,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <link rel="stylesheet" type="text/css" href="/css/editablegrid-2.0.1.css" />
+    <link rel="stylesheet" type="text/css" href="/css/fidel.css" />
+    <script src="https://www.google.com/jsapi"></script>
+    <script>
+      google.load('jquery', '1.7');
+    </script>
+    <!-- include javascript and css files for jQuery, needed for the datepicker and autocomplete extensions -->
+    <script src="/js/jquery-1.6.4.min.js" ></script>
+    <script src="/js/jquery-ui-1.8.16.custom.min.js" ></script>
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui-1.8.16.custom.css" /> 
+
     <script src="/js/editablegrid-2.0.1.js"></script>
     <body>
       <%= yield %>
