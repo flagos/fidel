@@ -3,22 +3,75 @@
 <div class="title_attr">ID: <%= @c.id %></div>
 <div class="title_attr">Name: <%= @c.name %></div>
 <div class="title_attr">Surname: <%= @c.surname %></div>
-<div class="title_attr"> Birth: <%= @c.birth %></div>
+<div class="title_attr"> Birth: <%= @c.birth.nil? ? "" : @c.birth.strftime('%d/%m/%Y') %></div>
 <div class="title_attr"> email: <%= @c.email %></div>
+<% count = 0 %>
+<% @c.orders.each do |o| %>
+<%  if o.is_discount %>
+<%   count += 1 %>
+<%  end %>
+<% end %>
+<div class="orders_resume">  <%= count %> discount<%= count>=2 ? "s":"" %> for <%= @c.orders.size %> order<%= @c.orders.size>=2 ? "s":"" %></div> 
 </div>
  <br/>
 
-<div id="order_table">
-<div class="table">Montant</div>
-<di class="table"v>Date</div>
-<div class="table">Réduction</div>
+<style>
+	body { font-family:'lucida grande', tahoma, verdana, arial, sans-serif; font-size:11px ; }
+	h1 { font-size: 15px; }
+	a { color: #548dc4; text-decoration: none; }
+	a:hover { text-decoration: underline; }
+	table.testgrid { border-collapse: collapse; border: 1px solid #CCB; width: 800px; font-size:11px  }
+	table.testgrid td, table.testgrid th { padding: 5px; border: 1px solid #E0E0E0; height: 30px;}
+	table.testgrid th { background: #E5E5E5; text-align: left; }
+	input.invalid { background: red; color: #FDFDFD;  }
+	input {padding-top: 2px;padding-bottom: 2px; heigth: 20px}
+</style>
 
-<% @c.orders.each do |o| %>
-<a href="toto"> 
-   <div class="table"><%= o.sum %> </div>
-   <div class="table"><%= o.date.strftime('%d/%m/%Y %kh%M') %></div>
-   <div class="table"><%= o.is_discount %> </div>
-</a>
+<script>
+// helper function to display a message
+function displayMessage(text, style) { 
+	_$("message").innerHTML = "<p class='" + (style || "ok") + "'>" + text + "</p>"; 
+} 
 
-<% end %>
+window.onload = function() {
+    editableGrid = new EditableGrid("DemoGridJSON"); 
+    editableGrid.tableLoaded = function() { this.renderGrid("tablecontent", "testgrid"); };
+    editableGrid.loadJSON("/client/json/<%= @c.id %>");
+    
+    // register the function that will handle model changes
+    editableGrid.modelChanged = function(rowIndex, columnIndex, oldValue, newValue) {
+
+	$.ajax({
+
+            url: "/orders/<%= @c.id %>/update",
+
+            type: 'POST',
+
+            dataType: "json",
+
+            data: {
+		id: editableGrid.getRowId(rowIndex),
+		column: columnIndex,
+		value: newValue
+            },
+
+            success: function (response) {
+		// reset old value if failed
+		// if (response != "ok") editableGrid.setValueAt(rowIndex, columnIndex, oldValue);
+		// here you could also highlight the updated row to give the user some feedback
+		displayMessage("Value for '" + editableGrid.getColumnName(columnIndex) + "' in row " + editableGrid.getRowId(rowIndex) + " has changed from '" + oldValue + "' to '" + newValue + "'");
+            },
+
+            error: function(XMLHttpRequest, textStatus, exception) {
+		alert(XMLHttpRequest.responseText);
+            }
+	});
+    };
+}
+</script>
+
+<!-- Feedback message zone -->
+<div id="message"></div>
+<div id="tablecontent"></div>
+
 </div>

@@ -24,10 +24,15 @@ end
 
 post '/orders/:client_id/new' do
   @c = Client.get(params[:client_id])
-  puts params.inspect
   @order = Order.create(:sum         => params[:sum],
                         :date        => Time.now,
                         :is_discount => (params[:is_discount]=="on"),
                         :client      => @c)
   erb :register_order
+end
+
+post '/orders/:client_id/update' do
+  order = Order.get(params[:id])
+  order[Orders_metadata[params[:column].to_i][:name]] = params[:value]
+  order.save
 end

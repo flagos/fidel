@@ -16,7 +16,7 @@ get '/clients' do
   erb :view_clients  
 end
 
-Client_metadata = [{ :name     => "name",
+Clients_metadata = [{:name     => "name",
                      :label    => "Name",
                      :datatype => "string",
                      :editable => true },
@@ -39,19 +39,35 @@ Client_metadata = [{ :name     => "name",
                    
                   ]
 
+Orders_metadata = [{ :name     => "date",
+                     :label    => "Date",
+                     :datatype => "date",
+                     :editable => false },
+                   { :name     => "sum",
+                     :label    => "Sum",
+                     :datatype => "integer",
+                     :editable => true },
+
+                   { :name     => "is_discount",
+                     :label    => "Discount",
+                     :datatype => "boolean",
+                     :editable => true },
+                     
+                  ]
+
 get '/clients.json' do
 
   json=Hash.new
-  json["metadata"] = Client_metadata
+  json["metadata"] = Clients_metadata
   json["data"] = Array.new
   Client.all.each do |c|
     json["data"].push( { :id      => c.id,
                          :values  => {
                            :name    => c.name,
                            :surname => c.surname,
-                           :birth   => c.birth.nil? ? "" : c.birth.strftime('%d/%m/%y'),
+                           :birth   => c.birth.nil? ? "" : c.birth.strftime('%d/%m/%Y'),
                            :email   => c.email,
-                           :page    => "<a href=\"/client/#{c.id}\"> Consulter </a>" ,
+                           :page    => "<a href=\"/client/#{c.id}\"> More info </a>" ,
                          }
                        }
                      )
@@ -65,7 +81,7 @@ end
 
 post '/client/update' do
   client = Client.get(params[:id])
-  client[Client_metadata[params[:column].to_i][:name]] = params[:value]
+  client[Clients_metadata[params[:column].to_i][:name]] = params[:value]
   client.save
 
 end
@@ -82,4 +98,21 @@ end
 get '/client/:client_id' do
   @c = Client.get(params[:client_id])
   erb :view_client
+end
+
+get '/client/json/:client_id' do
+  @c = Client.get(params[:client_id])
+  json=Hash.new
+  json["metadata"] = Orders_metadata
+  json["data"] = Array.new
+  @c.orders.each do |o|
+    json["data"].push( { :id      => o.id,
+                         :values  => {
+                           :sum         => o.sum,
+                           :date        => o.date.nil? ? "" : o.date.strftime('%d/%m/%Y'),
+                           :is_discount => o.is_discount}
+                         
+                       })
+  end
+  json.to_json
 end
