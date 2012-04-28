@@ -1,3 +1,9 @@
+<script>
+	$(function() {
+		$( "#datepicker" ).datepicker();
+	});
+</script>
+
 <p>Enregistrer un nouveau client :</p>
 <form action="/client/new" method="post">
   <label for="name">Nom :</label>
@@ -5,7 +11,7 @@
   <label for="surname">Prénom :</label>
   <input type="text" name="surname">
   <label for="birth">Date de naissance</label>
-  <input type="date" name="birth">
+  <input type="date" id="datepicker" name="birth">
   <label for="email">email :</label>
   <input type="text" name="email">
   <label for="to">Votre message :</label>
