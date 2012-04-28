@@ -125,3 +125,8 @@ table.testgrid td {
 	padding-bottom: 5px;
 	float: right;
 }
+
+.title {
+    width: 300px;
+    float: left;
+}
