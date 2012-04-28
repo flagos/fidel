@@ -4,7 +4,7 @@ class Order
   belongs_to :client
 
   property :id,          Serial
-  property :sum,         Integer, :required => true
+  property :sum,         Float, :required => true
   property :date,        DateTime
   property :is_discount, Boolean, :default  => false  
 

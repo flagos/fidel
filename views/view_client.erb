@@ -11,7 +11,9 @@
 <%   count += 1 %>
 <%  end %>
 <% end %>
-<div class="orders_overview">  <%= count %> discount<%= count>=2 ? "s":"" %> for <%= @c.orders.size %> order<%= @c.orders.size>=2 ? "s":"" %></div> 
+<div id="orders_overview">  <%= count %> discount<%= count>=2 ? "s":"" %> for <%= @c.orders.size %> order<%= @c.orders.size>=2 ? "s":"" %></div> 
+<div id="create_order"> <a href="/orders/<%= @c.id %>/new" > Create new order </a>
+</div>
 </div>
  <br/>
 
@@ -70,8 +72,9 @@ window.onload = function() {
 }
 </script>
 
-<!-- Feedback message zone -->
-<div id="message"></div>
-<div id="tablecontent"></div>
-
+<div class="main_view">
+  <!-- Feedback message zone -->
+  <div id="message"></div>
+  <div id="tablecontent"></div>
+</div>
 </div>

@@ -41,7 +41,7 @@ input.invalid {
 }
 #message {
     width: 490px;
-    padding-left: 300px;
+#    padding-left: 300px;
 }
 table.testgrid { 
     border-collapse: collapse; 
@@ -132,7 +132,24 @@ table.testgrid td {
     float: left;
 }
 
-.orders_overview {
+#orders_overview {
     font-size: 14px;
     padding-top: 10px;
+}
+
+#create_order {
+    font-size: 14px;
+    padding: 10px; 
+    background: #E36217;
+    width: 110px;
+    margin-top: 30px;
+    border-radius: 5px;
+}
+
+#create_order a {
+    color: white;
+}
+
+.main_view {
+    margin-left: 300px;
 }

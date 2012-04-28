@@ -45,7 +45,7 @@ Orders_metadata = [{ :name     => "date",
                      :editable => false },
                    { :name     => "sum",
                      :label    => "Sum",
-                     :datatype => "integer",
+                     :datatype => "float",
                      :editable => true },
 
                    { :name     => "is_discount",
