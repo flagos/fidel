@@ -28,10 +28,12 @@ post '/orders/:client_id/new' do
                         :date        => Time.now,
                         :is_discount => (params[:is_discount]=="on"),
                         :client      => @c)
-  erb :register_order
   if @order.saved?
     redirect "/client/#{@c.id}"
+  else
+    erb :register_order
   end
+
 end
 
 post '/orders/:client_id/update' do
