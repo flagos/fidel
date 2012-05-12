@@ -38,12 +38,13 @@ window.onload = function() {
             }
 	});
 
-	// set active (stored) filter if any
-	_$('filter').value = currentFilter ? currentFilter : '';
-	
-	// filter when something is typed into filter
-	_$('filter').onkeyup = function() {alert (_$('filter').value); editableGrid.filter(_$('filter').value); };
-
     };
+
+
+    // set active (stored) filter if any
+    _$('filter').value = editableGrid.currentFilter ? editableGrid.currentFilter : '';
+    
+    // filter when something is typed into filter
+    _$('filter').onkeyup = function() {editableGrid.filter(_$('filter').value); };
 
 }
