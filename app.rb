@@ -20,6 +20,10 @@ require './client.rb'
 require './order.rb'
 
 
+get '/' do
+  redirect '/clients'
+end
+
 get '/orders' do
   "Hello World!"
 end

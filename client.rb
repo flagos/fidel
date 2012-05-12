@@ -91,7 +91,10 @@ post '/client/new' do
                           :surname => params[:surname],
                           :email   => params[:email],
                           :birth   => params[:birth])
-  erb :register_client  
+  erb :register_client
+  if @client.saved?
+    redirect "/client/#{@client.id}"
+  end
 end
 
 

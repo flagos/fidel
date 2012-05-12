@@ -11,6 +11,10 @@
 </style>
 
 <script src="/js/client_table.js"></script>
+<!-- include javascript and css files for the autocomplete extension -->
+<script src="/js/autocomplete.js" ></script>
+<link rel="stylesheet" href="/css/autocomplete.css" type="text/css" media="screen">
+
     <div id="users_overview" class="top-left_overview">
       <div id="users_info">
       Total Clients: <%= Client.all.size %>
@@ -22,5 +26,10 @@
     <div class="main_view">
 	<!-- Feedback message zone -->
 	<div id="message"></div>
+
+	<!-- Grid filter -->
+	<label for="filter">Filter :</label>
+	<input type="text" id="filter"/>
+
 	<div id="tablecontent"></div>
     </div>
