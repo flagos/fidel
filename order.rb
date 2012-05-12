@@ -29,6 +29,9 @@ post '/orders/:client_id/new' do
                         :is_discount => (params[:is_discount]=="on"),
                         :client      => @c)
   erb :register_order
+  if @order.saved?
+    redirect "/client/#{@c.id}"
+  end
 end
 
 post '/orders/:client_id/update' do
