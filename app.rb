@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env ruby1.9.1
 
 APP_ROOT = File.expand_path(File.dirname(__FILE__))
 
