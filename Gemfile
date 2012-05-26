@@ -7,4 +7,4 @@ gem 'thin'
 gem 'haml'
 gem 'data_mapper'
 gem 'dm-sqlite-adapter'
-
+gem 'dm-mysql-adapter'
