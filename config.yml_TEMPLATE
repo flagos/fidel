@@ -1,0 +1,6 @@
+db:
+  connection_type: sqlite3     # sqlite3, mysql, or anything that can work on Datamapper
+  host:                        # not needed for sqlite3
+  db:                          # not needed for sqlite3
+  db_user:                     # not needed for sqlite3
+  db_pass:                     # not needed for sqlite3

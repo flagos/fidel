@@ -9,15 +9,22 @@ require 'dm-timestamps'
 require 'dm-validations'  
 require 'dm-migrations' 
 
+# yaml
+require 'yaml'
+
 # sinatra
 require 'sinatra'
 
-#gloabal gem
+#global gem
 require 'json'
 
 # local load
 require './client.rb'
 require './order.rb'
+
+
+config = YAML::load(File.read("config.yml"))
+puts config.inspect
 
 
 get '/' do
@@ -35,7 +42,18 @@ end
 
 # Setup for Datamapper
 DataMapper::Logger.new($stdout, :debug)
-DataMapper.setup( :default, "sqlite3://#{Dir.pwd}/db/fidel.db" )
+if(config["db"]["connection_type"]=="sqlite3")
+  DataMapper.setup( :default, "sqlite3://#{Dir.pwd}/db/fidel.db" )
+else
+  connec = config["db"]["connection_type"]
+  host   = config["db"]["host"] || localhost
+  db     = config["db"]["db"]
+  user   = config["db"]["user"]
+  pass   = config["db"]["pass"]
+
+  DataMapper.setup( :default, "#{connec}://#{user}:#{pass}@#{host}/#{db}" )
+end
+
 
 DataMapper.finalize
 DataMapper.auto_upgrade!
