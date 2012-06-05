@@ -67,7 +67,7 @@ get '/clients.json' do
                            :surname => c.surname,
                            :birth   => c.birth.nil? ? "" : c.birth.strftime('%d/%m/%Y'),
                            :email   => c.email,
-                           :page    => "<a href=\"/client/#{c.id}\"> More info </a>" ,
+                           :page    => "<a href=\"/client/#{c.id}\">  <img src=\"img/profile.png\" /> </a>  <a onclick=\"return confirm('Are you sure you want to delete this person ? ')\" href=\"/client/delete/#{c.id}\" > <img src=\"img/delete.png\" /> </a> " ,
                          }
                        }
                      )
@@ -103,6 +103,14 @@ get '/client/:client_id' do
   @c = Client.get(params[:client_id])
   erb :view_client
 end
+
+get '/client/delete/:client_id' do
+  @c = Client.get(params[:client_id])
+  @c.destroy
+  redirect "/"
+end
+
+
 
 get '/client/json/:client_id' do
   @c = Client.get(params[:client_id])
