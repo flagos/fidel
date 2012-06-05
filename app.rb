@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env ruby1.9.1
 
 APP_ROOT = File.expand_path(File.dirname(__FILE__))
 
@@ -24,8 +24,6 @@ require './order.rb'
 
 
 config = YAML::load(File.read("config.yml"))
-puts config.inspect
-
 
 get '/' do
   redirect '/clients'
@@ -48,8 +46,8 @@ else
   connec = config["db"]["connection_type"]
   host   = config["db"]["host"] || localhost
   db     = config["db"]["db"]
-  user   = config["db"]["user"]
-  pass   = config["db"]["pass"]
+  user   = config["db"]["db_user"]
+  pass   = config["db"]["db_pass"]
 
   DataMapper.setup( :default, "#{connec}://#{user}:#{pass}@#{host}/#{db}" )
 end
